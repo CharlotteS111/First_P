@@ -19,11 +19,15 @@ class LoginScreen extends StatelessWidget {
           children: [
             TextField(
               controller: userNameController,
-              decoration: InputDecoration(labelText: 'Username'),
+              decoration: InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.blue)),
             ),
             TextField(
               controller: passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.blue)),
               obscureText: true,
             ),
             SizedBox(height: 20),
@@ -42,7 +46,8 @@ class LoginScreen extends StatelessWidget {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LocationWeatherScreen(userName: userNameController.text),
+                      builder: (context) => LocationWeatherScreen(
+                          userName: userNameController.text),
                     ),
                   );
                 } else {
