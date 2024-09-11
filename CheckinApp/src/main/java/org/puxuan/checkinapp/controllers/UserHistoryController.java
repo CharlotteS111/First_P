@@ -6,6 +6,7 @@ import org.puxuan.checkinapp.mappers.UserHistoryMapper;
 import org.puxuan.checkinapp.repository.UserHistoryRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -40,7 +41,15 @@ public class UserHistoryController {
 
     @GetMapping("/find/{username}")
     public List<UserHistoryDto> findUserHistoryByUserName(@PathVariable String username) {
-        return userHistoryRepository.findByUserName(username).stream().map(userHistoryMapper::toDto).collect(Collectors.toList());
+        List<UserHistory> byUserName = userHistoryRepository.findByUserName(username);
+
+        List<UserHistoryDto> collect = new ArrayList<>();
+        for (UserHistory userHistory : byUserName) {
+            UserHistoryDto userHistoryDto = new UserHistoryDto(userHistory.getUserName(), userHistory.getTime(), userHistory.getLocation(), userHistory.getWeather());
+            collect.add(userHistoryDto);
+        }
+        return collect;
+//        return userHistoryRepository.findByUserName(username).stream().map(userHistoryMapper::toDto).collect(Collectors.toList());
     }
 
 

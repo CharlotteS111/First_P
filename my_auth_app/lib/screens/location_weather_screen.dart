@@ -136,9 +136,14 @@ class _LocationWeatherScreenState extends State<LocationWeatherScreen> {
                 shrinkWrap: true,
                 itemCount: history.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final historyItem = history[index];
+                  final time = historyItem['time'] ?? 'Unknown time';
+                  final location = historyItem['location'] ?? 'Unknown location';
+                  final weather = historyItem['weather'] ?? 'Unknown weather';
+
                   return ListTile(
-                    title: Text(history[index]['time']),
-                    subtitle: Text('Location: ${history[index]['location']}\nWeather: ${history[index]['weather']}'),
+                    title: Text(time),
+                    subtitle: Text('Location: $location\nWeather: $weather'),
                   );
                 },
               ),
